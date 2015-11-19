@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,div{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:400px;
+            height:300px;
+            background: url("img/ddd.jpg") no-repeat;
+            background-size: 400px 300px;
+        }
+        #div1 img{
+            width:400px;
+            height:300px;
+            border:none;
+            opacity: 0;
+        }
+        #div2{
+            width:600px;
+            height:500px;
+            margin:800px auto 500px;
+            background:url("img/ddd.jpg") no-repeat;
+        }
+        #div2 img{
+            width:600px;
+            height:500px;
+            opacity: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script type="text/javascript">
+    var oDiv=document.getElementById("div1");
+    window.onload=function(){
+        var oImg=new Image;
+        oImg.src="img/zhuyin.jpg";
+        oImg.onload=function(){
+            oDiv.appendChild(this);
+            move(this);
+        }
+    }
+
+
+
+    var oBox=document.getElementById("div2");
+    var oBoxTop=offset(oBox).top+oBox.offsetHeight;
+    window.onscroll=function(){
+        if(!oBox.isLoad){
+            var winTop=getWin("clientHeight")+getWin("scrollTop");
+            if(oBoxTop<=winTop){
+                var oImg=new Image;
+                oImg.src="img/f.jpg";
+                oImg.onload=function(){
+                    oBox.appendChild(this);
+                    oBox.isLoad=true;
+                    move(this);
+                }
+            }
+        }
+    }
+
+    function move(oImg){
+        var n=0;
+        var timer=window.setInterval(function(){
+            if(n===1){
+                oImg.style.opacity=1;
+                window.setInterval(timer);
+                return;
+            }
+            n+=0.01;
+            oImg.style.opacity=n;
+        },0)
+    }
+
+    function offset(curEle){
+        var left=curEle.offsetLeft;
+        var top=curEle.offsetTop;
+        var par=curEle.offsetParent;
+        while(par){
+            left+=par.offsetLeft;
+            top+=par.offsetTop;
+            par=par.offsetParent;
+        }
+        return {left:left,top:top};
+    }
+
+    function getWin(attr){
+        return document.documentElement[attr]||document.body[attr];
+    }
+</script>
+</body>
+</html>
