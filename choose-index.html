@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #tab {
+            margin: 10px auto 0;
+            width: 500px;
+        }
+
+        #tab ul {
+            position: relative;
+            top: 1px;
+        }
+
+        #tab ul li {
+            float: left;
+            margin-right: 15px;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #CDE074;
+            cursor: pointer;
+        }
+
+        #tab ul li.select {
+            background: #ffe470;
+            border-bottom: 1px solid #ffe470;
+        }
+
+        #tab div {
+            display: none;
+            width: 500px;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            background: #ffe470;
+            border: 1px solid #CDE074;
+            clear: both;
+        }
+
+        #tab div.select {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">综艺</li>
+        <li>电影</li>
+        <li>电视剧</li>
+    </ul>
+    <div class="select">综艺快讯</div>
+    <div>热门电影</div>
+    <div>连播剧场</div>
+</div>
+<script>
+    var oDivs=tab.getElementsByTagName("div");
+    var oLis=document.getElementsByTagName("li");
+
+//    /*方法一 自执行函数*/
+//    for(var i=0;i<oLis.length;i++){
+//        (function(i){
+//            oLis[i].onclick=function(){
+//                for(var j=0;j<oLis.length;j++){
+//                    oLis[j].className=null;
+//                    oDivs[j].className=null;
+//                }
+//                oLis[i].className="select";
+//                oDivs[i].className="select";
+//            }
+//        })(i)
+//    }
+
+    /*方法二 自定义属性*/
+//    function changeTab(n){
+//        for(var i= 0;i<oLis.length;i++){
+//            oLis[i].className="";
+//            oDivs[i].className="";
+//        }
+//        oLis[n].className="select";
+//        oDivs[n].className="select";
+//    }
+//    for(var i=0;i<oLis.length;i++){
+//        oLis[i].cur=i;
+//        oLis[i].onclick=function(){
+//            changeTab(this.cur);
+//        }
+//    }
+
+    /*方法三 闭包*/
+    for(var i=0;i<oLis.length;i++){
+        oLis[i].onclick=(function(i){
+            return function(){
+                for(var j=0;j<oLis.length;j++){
+                    oLis[j].className="";
+                    oDivs[j].className="";
+                }
+                oLis[i].className="select";
+                oDivs[i].className="select";
+            }
+        })(i);
+    }
+</script>
+</body>
+</html>

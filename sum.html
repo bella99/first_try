@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>任意数求和</title>
+</head>
+<body>
+<script type="text/javascript">
+    function sum(){
+        var total=0;
+        for(var i=0;i<arguments.length;i++){
+            var cur=Number(arguments[i]);
+            if(!isNaN(cur)){
+                total+=cur;
+            }
+        }
+        return total;
+    }
+    var total=sum(1,2,3,4,5,3,9,6);
+    console.log(total);
+</script>
+
+</body>
+</html>

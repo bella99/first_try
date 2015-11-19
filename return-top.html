@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>回到顶部</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-size: 28px;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            height: 1000%;
+            background: -webkit-linear-gradient(top, #BE46D8, #BB6688, #D49AE1, #31b0d5);
+        }
+
+        #goTop {
+            display: none;
+            color: white;
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            line-height: 80px;
+            background: grey;
+            opacity: 0.6;
+            border-radius: 20px;
+            position: fixed;
+            bottom: 10px;
+            margin-right: -40px;
+            right: 50%;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="goTop">GO!</div>
+<script type="text/javascript">
+    function getWin(attr) {
+        return document.documentElement[attr] || document.body[attr];
+    }
+    var goTop = document.getElementById("goTop");
+    var timer = null;
+    function move() {
+        goTop.style.display = "none";
+        window.onscroll = null;
+        window.clearTimeout(timer);
+        document.documentElement.scrollTop -= 100;
+        document.body.scrollTop -= 100;
+        if (getWin("scrollTop") !== 0) {
+            timer = window.setTimeout(move, 10);
+        } else {
+            window.onscroll = scrollFn;
+        }
+    }
+    function scrollFn() {
+        var curTop = getWin("scrollTop");
+        goTop.style.display = curTop > 0 ? "block" : "none";
+    }
+    goTop.onclick = move;
+    window.onscroll = scrollFn;
+</script>
+</body>
+</html>

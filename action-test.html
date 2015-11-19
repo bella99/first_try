@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,div{
+            margin:0;
+            padding:0;
+        }
+        .div1{
+            position:absolute;
+            top:0;
+            left: 0;
+            width:100px;
+            height:100px;
+            background: -webkit-linear-gradient(top left,#D49AE1,#B3DE94,#ffcccc);
+        }
+    </style>
+</head>
+<body>
+<div class="div1">1</div>
+<script type="text/javascript">
+    var oDiv=document.querySelector("div1");
+    oDiv.onclick=function(){
+        var timer=null;
+//        window.setInterval(function(){
+//
+//        })
+        getCss(oDiv,"left");
+        var val=0;
+        val+=5;
+        if(val>=500){
+            oDiv.style.left=500+"px";
+        }
+        oDiv.style.left=val+"px";
+        console.log(getCss(oDiv,"left"));
+    }
+
+    function getCss(ele,attr){
+        return window.getComputedStyle?window.getComputedStyle(ele,null)[attr]: ele.currentStyle[attr];
+    }
+</script>
+</body>
+</html>

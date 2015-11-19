@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div {
+            margin: 20px auto;
+            width: 500px;
+            border: 1px solid seagreen;
+            border-radius: 20px;
+            font-family: "Microsoft Yahei", "微软雅黑";
+
+        }
+
+        div ul {
+            list-style: none;
+            padding:20px;
+        }
+        #list ul li {
+            width:100%;
+            text-align: center;
+            height:35px;
+            line-height: 35px;
+            border-bottom: 1px dashed silver;
+            cursor: pointer;
+        }
+        .c0{
+            background: #ccddee;
+            opacity: 0.7;
+        }
+        .c1{
+            background: #D49AE1;
+            opacity: 0.7;
+        }
+        .c2{
+            background: #e3e3d3;
+            opacity: 0.7;
+        }
+        .cur{
+            background: green;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+<div id="list">
+    <ul>
+        <li>习近平联合国发展峰会演讲都说了什么(全文) | 专题</li>
+        <li>五台山被曝强收进山费 管理局：深感歉疚(图)</li>
+        <li>希拉里公开吐槽特朗普发型：像极了甜筒雪糕</li>
+        <li>安倍联大之行难刷存在感 奥巴马拒见</li>
+        <li>入晋一整年，王儒林为山西官员立了哪些规矩？</li>
+        <li>习近平联合国发展峰会演讲都说了什么(全文) | 专题</li>
+        <li>五台山被曝强收进山费 管理局：深感歉疚(图)</li>
+        <li>希拉里公开吐槽特朗普发型：像极了甜筒雪糕</li>
+        <li>安倍联大之行难刷存在感 奥巴马拒见</li>
+        <li>入晋一整年，王儒林为山西官员立了哪些规矩？</li>
+        <li>习近平联合国发展峰会演讲都说了什么(全文) | 专题</li>
+        <li>五台山被曝强收进山费 管理局：深感歉疚(图)</li>
+        <li>希拉里公开吐槽特朗普发型：像极了甜筒雪糕</li>
+        <li>安倍联大之行难刷存在感 奥巴马拒见</li>
+        <li>入晋一整年，王儒林为山西官员立了哪些规矩？</li>
+        <li>习近平联合国发展峰会演讲都说了什么(全文) | 专题</li>
+        <li>五台山被曝强收进山费 管理局：深感歉疚(图)</li>
+        <li>希拉里公开吐槽特朗普发型：像极了甜筒雪糕</li>
+        <li>安倍联大之行难刷存在感 奥巴马拒见</li>
+        <li>入晋一整年，王儒林为山西官员立了哪些规矩？</li>
+        <li>习近平联合国发展峰会演讲都说了什么(全文) | 专题</li>
+        <li>五台山被曝强收进山费 管理局：深感歉疚(图)</li>
+        <li>希拉里公开吐槽特朗普发型：像极了甜筒雪糕</li>
+        <li>安倍联大之行难刷存在感 奥巴马拒见</li>
+        <li>入晋一整年，王儒林为山西官员立了哪些规矩？</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var oLis=document.getElementById("list").getElementsByTagName("li");
+    for(var i=0;i<oLis.length;i++){
+        oLis[i].className=oLis[i].c="c"+(i%3);
+        oLis[i].onmouseover=function(){
+            this.className="cur";
+        }
+        oLis[i].onmouseleave=function(){
+            this.className=this.c;
+        }
+    }
+</script>
+</body>
+</html>

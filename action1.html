@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,div{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            position:absolute;
+            top:0;
+            left: 0;
+            width:100px;
+            height:100px;
+            background: darksalmon;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript" src="js/utils.min.js"></script>
+<script type="text/javascript">
+    var oBox=document.getElementById("box");
+    window.onload=function(){
+        var n=500;
+        oBox.style.left=n+"px";
+
+    }
+
+</script>
+</body>
+</html>

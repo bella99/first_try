@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer {
+            width: 500px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 2500px;
+            height: 300px;
+        }
+
+        .inner div {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            float: left;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            position: relative;
+            top:260px;
+            right:-350px;
+            text-align: center;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+
+        li.cur {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner">
+        <div style="background: orangered">1</div>
+        <div style="background: darksalmon">2</div>
+        <div style="background: slateblue">3</div>
+        <div style="background: yellowgreen">4</div>
+        <div style="background: deeppink">5</div>
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/tween.js"></script>
+<script type="text/javascript">
+    //点击每一个li，让inner的left值不断改变（索引值*-width）
+    var oLis=document.querySelectorAll('li');
+    var oInner=document.querySelector('div .inner');
+    console.log(getCss(oInner,"left"));
+    for(var i=0;i<oLis.length;i++){
+        oLis.item(i).i=i;
+        var timer=null;
+        oLis.item(i).onclick=function(){
+            window.clearTimeout(timer);
+            common.selectBtn(this.i);
+            var step=this.i;
+            var begin=step*-500+"px";
+//            console.log(begin);
+//            oInner.style.left=(step*-500)+"px";
+
+            timer=window.setTimeout(function(){
+                window.clearTimeout(timer);
+                timer=window.setInterval(function(){
+                    common.animate(oInner,"left",(step*-500),100);
+                    console.log(getCss(oInner,"left"));
+                    console.log(1);
+                },10);
+            },10);
+
+        };
+    }
+
+    var common={
+        getCss:function(ele,attr){
+            return window.getComputedStyle?window.getComputedStyle(ele,null)[attr]: ele.currentStyle[attr];
+        },
+        selectBtn:function(n){
+            for(var i=0;i<oLis.length;i++){
+                oLis[i].className="";
+            };
+            oLis[n].setAttribute("class","cur");
+        },
+        animate:function(ele,attr,target,duration){
+            var begin=getCss(ele,attr);
+            var change=target-begin;
+            var times=0;
+            var interval=10;
+            function step(){//单步的走法
+                times+=interval;
+                if(times>=duration){//到了规定的时间，应该停止动画
+                    window.clearTimeout(timer);
+                    ele.timer=null;
+                    ele.style.left=target+"px";//到了规定时间，强制让其达到终点，以免出现误差
+                }else{
+                    ele.style.left=times/duration*change+begin+"px";
+                    //当前的位置=（当前消耗的事件/规定的总时间）*总的距离+起点
+                }
+            }
+            step();
+        },
+    }
+
+</script>
+
+</body>
+</html>
